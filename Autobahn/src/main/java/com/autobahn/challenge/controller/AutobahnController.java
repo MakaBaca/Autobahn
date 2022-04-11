@@ -5,21 +5,23 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.autobahn.challenge.dao.RecordsService;
 
-@Controller
+@RestController
+@EnableOAuth2Sso
 public class AutobahnController {
 	
 	@Autowired
@@ -43,6 +45,7 @@ public class AutobahnController {
 				.body(r);
 	}
 	
+	/**
 	@RequestMapping(value = "/deleteRecords", method = RequestMethod.POST)
 	public ResponseEntity<Resource> deleteRecord(@RequestBody MultipartFile inputFile){
 		Resource r = null;
@@ -78,7 +81,7 @@ public class AutobahnController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + outputFile.getName() + "\"")
 				.body(r);
 	}
-	
+	**/
 	
 
 }
